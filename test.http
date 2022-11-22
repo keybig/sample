@@ -4,7 +4,7 @@
 GET http://localhost:3000/fizz HTTP/1.1
 
 ### FIZZ GET 1
-GET http://localhost:3000/fizz/48 HTTP/1.1
+GET http://localhost:3000/fizz/88 HTTP/1.1
 
 
 ### FIZZ POST
@@ -13,7 +13,7 @@ POST http://localhost:3000/fizz HTTP/1.1
 Content-Type: application/json
 
 {
-    "fizzbuzz_id": "38333",
-    "message": "hi! yes! wow"
+    "fizzbuzz_id": "123345",
+    "message": "hi! yes! wow! new item!"
 }
 

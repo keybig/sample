@@ -1,12 +1,12 @@
-import { getItem, getItems, addItem, deleteItem, updateItem } from "../controllers/fizzcon.js";
+import { getItem, getItems, addItem } from "../controllers/fizzcon.js";
 
 const Item = {
   type: "object",
   properties: {
     fizzbuzz_id: { type: "string" },
     creation_date: { type: "string" },
-    useragent: { type: "string"},
-    message: { type: "string"}
+    useragent: { type: "string" },
+    message: { type: "string" },
   },
 };
 
@@ -17,8 +17,8 @@ const Items = {
     properties: {
       fizzbuzz_id: { type: "string" },
       creation_date: { type: "string" },
-      useragent: { type: "string"},
-      message: { type: "string"}
+      useragent: { type: "string" },
+      message: { type: "string" },
     },
   },
 };
@@ -44,61 +44,31 @@ const getItemOpts = {
 };
 
 const postItemOpts = {
-    schema: {
-      body: {
-        type: 'object',
-        required: ['fizzbuzz_id', 'message'],
-        properties: {
-            fizzbuzz_id: { type: 'string'},
-            //creation_date: { type: 'string'},
-           // useragent: {type: 'string'},
-            message: {type: 'string'}
-        }
-      },
-      response: {
-        201: Item,
+  schema: {
+    body: {
+      type: "object",
+      required: ["fizzbuzz_id", "message"],
+      properties: {
+        fizzbuzz_id: { type: "string" },
+        //creation_date: { type: 'string'},
+        // useragent: {type: 'string'},
+        message: { type: "string" },
       },
     },
-    handler: addItem,
-  };
-
-  const deleteItemOpts = {
-    schema: {
-      response: {
-        200: {
-            type: 'object',
-            properties: {
-                message: {type: 'string'}
-            }
-        },
-      },
+    response: {
+      201: Item,
     },
-    handler: deleteItem,
-  };
-
-  const updateItemOpts = {
-    schema: {
-      response: {
-        200: Items,
-      },
-    },
-    handler: updateItem,
-  };
+  },
+  handler: addItem,
+};
 
 async function fizzRoutes(fastify, options, done) {
-  fastify.get("/fizzo", async (request, reply) => {
-    return { hello: "world world world" };
-  });
-
   fastify.get("/fizz/:id", getItemOpts);
 
   fastify.get("/fizz", getItemsOpts);
 
-  fastify.post('/fizz', postItemOpts);
+  fastify.post("/fizz", postItemOpts);
 
-  fastify.delete('/fizz/:id', deleteItemOpts)
-
-  fastify.put('/fizz/:id', updateItemOpts)
   done();
 }
 
